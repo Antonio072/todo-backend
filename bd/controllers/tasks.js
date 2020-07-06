@@ -29,6 +29,19 @@ module.exports = {
             res.json(error)
         })
     },
+    new: function (req, res) {
+        res.render('tasks/new')
+
+    },
+    destroy: function(req, res){
+        Task.destroy(
+            {where: {id : req.params.id}}
+            ).then(
+                response => {
+                    res.redirect('/tasks')
+                }
+            )
+    },
 
     create: function (req, res) {
         Task.create({ description: req.body.description })
@@ -38,11 +51,7 @@ module.exports = {
                 res.json(error)
             })
     },
-    new: function (req, res) {
-        res.render('tasks/new')
 
-    },
-   
     update: function (req, res) {
         Task.update({description : req.body.description},{
                     where: {id : req.params.id}
