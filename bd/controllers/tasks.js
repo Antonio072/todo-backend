@@ -9,6 +9,27 @@ module.exports = {
                 res.render('tasks/index', { tasks: response })
             })
     },
+    show: function (req, res) {
+        Task.findByPk(req.params.id)
+            .then(function (task)
+                { res.render('tasks/show', { task: task }) 
+            })
+            .catch(error => {
+                console.log(error)
+                res.json(error)
+            })
+    },
+    edit: function (req, res) {
+        Task.findByPk(req.params.id)
+        .then(function (task)
+            { res.render('tasks/edit', { task: task }) 
+        })
+        .catch(error => {
+            console.log(error)
+            res.json(error)
+        })
+    },
+
     create: function (req, res) {
         Task.create({ description: req.body.description })
             .then(result => res.json(result))
@@ -21,16 +42,7 @@ module.exports = {
         res.render('tasks/new')
 
     },
-    show: function (req, res) {
-        Task.findByPk(req.params.id)
-            .then(function (task)
-                { res.render('tasks/show', { task: task }) 
-            })
-            .catch(error => {
-                console.log(error)
-                res.json(error)
-            })
-    },
+   
     update: function (req, res) {
         Task.update({description : req.body.description},{
                     where: {id : req.params.id}

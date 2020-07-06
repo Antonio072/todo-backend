@@ -9,6 +9,8 @@ router.route('/tasks')
 
 router.get('/tasks/new',TasksController.new)
 
+router.get('/tasks/:id/edit', TasksController.edit)
+
 router.route('/tasks/:id')
     .get(TasksController.show)
     .put(TasksController.update)
