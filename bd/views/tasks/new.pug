@@ -1,0 +1,8 @@
+doctype html
+html
+    head
+        title Nueva tarea
+    body
+        form(action="/tasks", method="POST")
+            textarea(name="description", cols="30", rows="10",placeholder="Coloca aqui tu nuevo pendiente") 
+            input(type="submit" value="Guardar")
